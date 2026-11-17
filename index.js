@@ -2,6 +2,12 @@
 
 import fs from 'fs';
 import readline from 'node:readline';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const file = path.join(path.dirname(fileURLToPath(import.meta.url)), 'tasks.json');
+
+if (!fs.existsSync(file)) fs.writeFileSync(file, '{}');
 
 const data = fs.readFileSync('tasks.json', 'utf8');
 const jsonObj = JSON.parse(data);
@@ -24,6 +30,11 @@ function getTimeStamp(){
 function getLastIndex(){
     const taskJsonLength = Object.keys(jsonObj).length
     return taskJsonLength? String(taskJsonLength + 1) : String(1);
+}
+
+function writeFileFunct(){
+    fs.writeFileSync('tasks.json', JSON.stringify(jsonObj, null, 2));
+    return
 }
 
 const functions = {
@@ -56,23 +67,19 @@ const functions = {
     update : function (taskId, updatedDescription) {
             jsonObj[taskId]["description"] = updatedDescription
             jsonObj[taskId].updatedAt = getTimeStamp()
-            
-            fs.writeFileSync('tasks.json', JSON.stringify(jsonObj, null, 2));
+            writeFileFunct()
             console.log(`Task updated (ID: ${taskId})`)
         },
     "mark-in-progress" : function (taskId){
             jsonObj[taskId]["status"] = "in-progress"
             jsonObj[taskId].updatedAt = getTimeStamp()
-
-            fs.writeFileSync('tasks.json', JSON.stringify(jsonObj, null, 2));
+            writeFileFunct()
          
         },
     "mark-done" : function (taskId){
             jsonObj[taskId]["status"] = "done"
             jsonObj[taskId].updatedAt = getTimeStamp()
-            
-            fs.writeFileSync('tasks.json', JSON.stringify(jsonObj, null, 2));
-         
+            writeFileFunct()
         }
   
 
@@ -92,11 +99,9 @@ rl.on('line', (line) => {
     // Extract function name and optional arguments
     const match = line.trim().match(/^([\w-]+)(?:\s+(\d+))?(?:\s+"(.*)"|\s+(.+))?$/);
   
-
   if (match) {
         const funcName = match[1];
-        console.log(funcName)
-
+     
         // Extract arguments
         const args = [];
 
