@@ -70,6 +70,11 @@ const functions = {
             writeFileFunct()
             console.log(`Task updated (ID: ${taskId})`)
         },
+
+    delete : function (taskId){
+            delete jsonObj[taskId]
+            writeFileFunct()
+        },
     "mark-in-progress" : function (taskId){
             jsonObj[taskId]["status"] = "in-progress"
             jsonObj[taskId].updatedAt = getTimeStamp()
