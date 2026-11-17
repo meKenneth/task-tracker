@@ -4,7 +4,7 @@ A simple command-line task management application built with **Node.js**. It use
 
 ## Project Repository
 
-[GitHub - Task Tracker CLI](https://github.com/meKenneth/task-tracker.git)
+https://github.com/meKenneth/task-tracker
 
 ## Features
 
