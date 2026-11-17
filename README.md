@@ -2,6 +2,10 @@
 
 A simple command-line task management application built with **Node.js**. It uses a JSON file to store task data locally.
 
+## Project Repository
+
+[GitHub - Task Tracker CLI](https://github.com/meKenneth/task-tracker.git)
+
 ## Features
 
 - Add new tasks
@@ -21,11 +25,16 @@ A simple command-line task management application built with **Node.js**. It use
 
 ## Installation
 
-1. Clone or download this repository.
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/meKenneth/task-tracker.git
+   ```
+
 2. Navigate to the project directory:
 
    ```bash
-   cd taskTracker
+   cd task-tracker
    ```
 
 3. Run the application:
